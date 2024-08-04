@@ -17,7 +17,11 @@ const ContactCard: React.FC<ContactCardProps> = ({ resource, onDelete }) => {
 
 	const deleteCard = (e: React.MouseEvent) => {
 		e.preventDefault();
-		onDelete(resource.id);
+		const userConfirmed = window.confirm('Are you sure you want to delete this card?');
+
+		if (userConfirmed) {
+			onDelete(resource.id);
+		}
 	};
 
 	return (

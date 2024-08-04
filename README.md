@@ -1,30 +1,23 @@
-# React + TypeScript + Vite
+# Contacts Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Functionality
 
-Currently, two official plugins are available:
+- Adding new contacts.
+- Displaying a list of all contacts.
+- Deleting contacts with confirmation.
+- Viewing detailed information for each contact.
+- Adding and displaying tags for contacts.
+- Input validation when creating contacts and adding tags.
+- Error handling and displaying warnings.
+- Animations for UI elements.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Technical Details
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json', './tsconfig.app.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- **Frontend:** React.js
+- **Validation:** react-hook-form
+- **State Management:** Redux Toolkit
+- **Routing:** React Router DOM
+- **Styling:** Tailwind CSS
+- **Typing:** TypeScript
+- **Build and Development Tools:** Vite
+- **Icons:** Lucide React
