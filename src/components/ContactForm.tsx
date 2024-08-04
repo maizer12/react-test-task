@@ -3,6 +3,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { useCreateContactMutation, useFetchContactsQuery } from '../api/contactsApi';
 import InputField from '../common/InputField';
 import Button from '../common/Button';
+import Alert from '../common/Alert';
 
 type FormData = {
 	firstName: string;
@@ -19,7 +20,7 @@ const ContactForm: React.FC = () => {
 	} = useForm<FormData>({
 		mode: 'onChange',
 	});
-	const [createContact] = useCreateContactMutation();
+	const [createContact, { isLoading }] = useCreateContactMutation();
 	const [submissionError, setSubmissionError] = useState<string | null>(null);
 	const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
 	const { refetch } = useFetchContactsQuery();
@@ -48,10 +49,10 @@ const ContactForm: React.FC = () => {
 	};
 
 	return (
-		<form onSubmit={handleSubmit(onSubmit)} className='contact-form col-span-2 w-full sticky top-14 h-fit'>
+		<form onSubmit={handleSubmit(onSubmit)} className='contact-form mb-10 col-span-2 w-full lg:sticky top-14 h-fit  animate-fade-in'>
 			<h2 className='form-title text-2xl mb-4'>Create Contact</h2>
 			{submissionError && <div className='error-message text-red-500 mb-2'>{submissionError}</div>}
-			{isSubmitted && <div className='success-message text-green-500 mb-2'>Contact successfully created!</div>}
+			{isSubmitted && <Alert type='positive'>Contact successfully created!</Alert>}
 			<InputField id='firstName' label='First Name' type='text' register={register('firstName', { required: 'First name is required' })} error={errors.firstName?.message} />
 			<InputField id='lastName' label='Last Name' type='text' register={register('lastName', { required: 'Last name is required' })} error={errors.lastName?.message} />
 			<InputField
@@ -68,7 +69,7 @@ const ContactForm: React.FC = () => {
 				error={errors.email?.message}
 			/>
 			<Button type='submit' className='mt-5 w-full'>
-				Add Contact
+				{isLoading ? 'Loading...' : 'Add Contact'}
 			</Button>
 		</form>
 	);

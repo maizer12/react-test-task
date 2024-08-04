@@ -7,11 +7,11 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
 	return (
-		<div className='h-screen flex flex-col bg-gray-50 overflow-hidden'>
+		<div className='h-screen flex flex-col bg-gray-50 lg:overflow-hidden'>
 			<header className='bg-white shadow-sm p-4'>
 				<div className='container mx-auto'>
 					<Link to='/'>
-						<h1 className='text-2xl font-bold'>Contacts Application</h1>
+						<h1 className='text-2xl font-bold animate-slide-in-left'>Contacts Application</h1>
 					</Link>
 				</div>
 			</header>

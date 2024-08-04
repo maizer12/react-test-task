@@ -11,7 +11,8 @@ const ContactPage: React.FC = () => {
 	const { data, error, isLoading, refetch } = useFetchContactQuery(id || '');
 	const [addTagsToContact, { isLoading: isAdding }] = useAddTagsToContactMutation();
 
-	const [newTag, setNewTag] = useState('test');
+	const [newTag, setNewTag] = useState('');
+	const [showAlert, setShowAlert] = useState(false);
 	const contact = data?.resources[0];
 
 	if (isLoading) return <LoadingSpinner className='h-full' />;
@@ -30,23 +31,24 @@ const ContactPage: React.FC = () => {
 	const lastName = fields['last name']?.[0]?.value || '';
 	const email = fields.email?.[0]?.value || '';
 
-	console.log(isAdding);
-
 	const handleAddTag = async () => {
 		if (newTag.trim() !== '') {
 			try {
 				await addTagsToContact({ id: contact.id, tags: [...tags.map(e => e.tag), newTag.trim()] });
 				setNewTag('');
+				setShowAlert(false);
 				refetch();
 			} catch (error) {
 				console.error('Failed to add tag', error);
 			}
+		} else {
+			setShowAlert(true);
 		}
 	};
 
 	return (
-		<div className='max-w-[460px] px-4 w-full mx-auto'>
-			<div className='flex items-center gap-4 mb-7'>
+		<div className='max-w-[460px] px-4 w-full mx-auto animate-fade-in'>
+			<div className='flex items-center gap-4 mb-7  '>
 				<img src={avatar_url || '/path/to/default/avatar.png'} className='w-20 h-20 rounded-full object-cover' alt={`${firstName} ${lastName}'s avatar`} />
 				<div>
 					<h4 className='text-base'>{`${firstName} ${lastName}`}</h4>
@@ -55,9 +57,14 @@ const ContactPage: React.FC = () => {
 			</div>
 			<h4 className='mb-3 text-base'>Tags</h4>
 			<TagList tags={tags} />
+			{showAlert && (
+				<Alert type='negative' className='mt-4 mb-0'>
+					Please enter a tag before adding.
+				</Alert>
+			)}
 			<input type='text' placeholder='Add new Tag' className='w-full p-3 border rounded-lg text-gray-600 placeholder-gray-400 focus:outline-none focus:border-gray-500 mt-9' value={newTag} onChange={e => setNewTag(e.target.value)} />
-			<Button className='mt-4 w-full' onClick={handleAddTag}>
-				Add Tag
+			<Button className='mt-4 w-full' onClick={handleAddTag} disabled={isAdding}>
+				{isAdding ? 'Loading...' : 'Add Tag'}
 			</Button>
 		</div>
 	);
