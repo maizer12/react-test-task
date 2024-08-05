@@ -9,7 +9,7 @@
 			}
 		},
 		{
-			"src": "api/proxy.js",
+			"src": "api/proxy.ts",
 			"use": "@vercel/node"
 		}
 	],
