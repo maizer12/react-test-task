@@ -1,5 +1,10 @@
 # Contacts Application
 
+## Deployment
+
+The application is deployed and can be accessed at [react-test-task-beryl.vercel.app](https://react-test-task-beryl.vercel.app/).
+
+
 ## Functionality
 
 - Adding new contacts.
