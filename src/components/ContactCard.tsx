@@ -25,14 +25,14 @@ const ContactCard: React.FC<ContactCardProps> = ({ resource, onDelete }) => {
 	};
 
 	return (
-		<Link to={`/contact/${resource.id}`} className='flex items-start p-4 bg-gray-100 rounded-md shadow-sm mb-4 max-w-full w-full'>
+		<Link to={`/contact/${resource.id}`} className='flex items-start p-4 bg-gray-100 rounded-md shadow-sm mb-4 max-w-full w-full relative'>
 			<img src={avatar_url || '/path/to/default/avatar.png'} className='w-16 h-16 rounded-full object-cover' alt={`${firstName} ${lastName}'s avatar`} />
 			<div className='flex-grow ml-4 max-w-full w-full block'>
 				<h4 className='text-base'>{`${firstName} ${lastName}`}</h4>
 				<p className='text-base text-gray-600 mb-4 overflow-hidden whitespace-nowrap overflow-ellipsis w-full'>{email}</p>
 				<TagList tags={tags} />
 			</div>
-			<button className='ml-4 text-gray-600 hover:text-gray-800 focus:outline-none' onClick={deleteCard}>
+			<button className='ml-4 text-gray-600 hover:text-gray-800 focus:outline-none absolute top-[10px] right-[20px]' onClick={deleteCard}>
 				<CircleX />
 			</button>
 		</Link>

@@ -27,7 +27,7 @@ const ContactList: React.FC = () => {
 	};
 
 	return (
-		<section className='w-full max-w-full flex-1 col-span-4 max-h-full overflow-y-auto lg:pr-2 custom-scrollbar  animate-fade-in'>
+		<section className='w-full max-w-full flex-1 col-span-4 max-h-full overflow-y-auto overflow-x-hidden lg:pr-2 custom-scrollbar  animate-fade-in'>
 			<h2 className='text-2xl mb-4'>Contacts</h2>
 			<div>
 				{data?.resources.map(resource => (
