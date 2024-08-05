@@ -15,5 +15,11 @@ export default function handler(req: IncomingMessage, res: ServerResponse): void
 		proxyRes.pipe(res, { end: true });
 	});
 
+	proxy.on('error', err => {
+		console.error(`Error with proxy request: ${err.message}`);
+		res.writeHead(500);
+		res.end('Internal Server Error');
+	});
+
 	req.pipe(proxy, { end: true });
 }
