@@ -1,0 +1,22 @@
+{
+	"version": 2,
+	"builds": [
+		{
+			"src": "package.json",
+			"use": "@vercel/static-build",
+			"config": {
+				"distDir": "dist"
+			}
+		},
+		{
+			"src": "api/proxy.js",
+			"use": "@vercel/node"
+		}
+	],
+	"rewrites": [
+		{
+			"source": "/api/v1/:path*",
+			"destination": "https://live.devnimble.com/api/v1/:path*"
+		}
+	]
+}
